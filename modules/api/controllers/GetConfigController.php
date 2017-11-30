@@ -9,13 +9,18 @@ class GetConfigController extends Controller
     public function actionIndex($url)
     {
         $model = $this->findModel($url);
+        $landing = AppConfig::find()
+            ->select(['domain'])
+            ->where(['pid' => $model->publicConfig->id, 'type' => AppConfig::TYPE_LANDING])
+            ->column();
 
         return json_encode([
             'code' => 0,
             'data' => [
                 'app_id' => $model->publicConfig->app_id,
                 'app_secret' => $model->publicConfig->app_secret,
-                'domain' => $model->domain
+                'domain' => $model->domain,
+                'landing' => $landing
             ]
         ]);
     }
