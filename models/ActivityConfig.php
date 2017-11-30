@@ -26,8 +26,8 @@ class ActivityConfig extends ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string'],
+            [['name', 'count'], 'required'],
+            [['name', 'count'], 'string'],
             [['created_at'], 'integer']
         ];
     }
@@ -36,6 +36,7 @@ class ActivityConfig extends ActiveRecord
     {
         return [
             'name' => '名称',
+            'count' => '统计代码',
             'created_at' => '创建时间'
         ];
     }

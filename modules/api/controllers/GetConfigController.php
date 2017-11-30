@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\api\controllers;
 
+use app\models\ActivityConfig;
 use app\models\AppConfig;
 use yii\web\Controller;
 
@@ -15,6 +16,7 @@ class GetConfigController extends Controller
             ]);
         }
 
+        $activityConfig = ActivityConfig::findOne($model->publicConfig->activity_id);
         $links = AppConfig::find()
             ->select(['domain', 'type'])
             ->where(['pid' => $model->pid, 'status' => AppConfig::STATUS_SUCCESS])
@@ -36,7 +38,8 @@ class GetConfigController extends Controller
                 'app_id' => $model->publicConfig->app_id,
                 'app_secret' => $model->publicConfig->app_secret,
                 'domain' => $entrance,
-                'landing' => $landing
+                'landing' => $landing,
+                'count' => $activityConfig->count
             ]
         ]);
     }
