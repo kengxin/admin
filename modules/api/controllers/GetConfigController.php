@@ -1,24 +1,14 @@
 <?php
 namespace app\modules\api\controllers;
 
-use yii\web\Controller;
 use app\models\AppConfig;
+use yii\web\Controller;
 
 class GetConfigController extends Controller
 {
     public function actionIndex($url)
     {
-        $model = AppConfig::find()
-            ->joinWith('publicConfig')
-            ->where(['domain' => $url, 'type' => AppConfig::TYPE_ENTRANCE])
-            ->one();
-
-        if ($model->status == AppConfig::STATUS_ERROR) {
-            $model = AppConfig::find()
-                ->joinWith('publicConfig')
-                ->where(['type' => AppConfig::TYPE_ENTRANCE, 'status' => AppConfig::STATUS_SUCCESS, 'public_config.activity_id' => $model->publicConfig->activity_id])
-                ->one();
-        }
+        $model = $this->findModel($url);
 
         return json_encode([
             'code' => 0,
