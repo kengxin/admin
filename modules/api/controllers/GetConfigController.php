@@ -8,33 +8,36 @@ class GetConfigController extends Controller
 {
     public function actionIndex($url)
     {
-        $model = $this->findModel($url);
-        $landing = AppConfig::find()
-            ->select(['domain'])
-            ->where(['pid' => $model->pid, 'type' => AppConfig::TYPE_LANDING])
-            ->column();
+        $url = trim($url, '/');
+        if (($model = AppConfig::find()->joinWith('publicConfig')->where(['domain' => $url])->one()) == null) {
+            return json_encode([
+                'code' => -1
+            ]);
+        }
+
+        $links = AppConfig::find()
+            ->select(['domain', 'type'])
+            ->where(['pid' => $model->pid])
+            ->all();
+
+        $landing = [];
+        $entrance = '';
+        foreach ($links as $link) {
+            if ($link->type == AppConfig::TYPE_ENTRANCE) {
+                $entrance = $link->domain;
+            } else if ($link->type == AppConfig::TYPE_LANDING) {
+                $landing[] = $link->domain;
+            }
+        }
 
         return json_encode([
             'code' => 0,
             'data' => [
                 'app_id' => $model->publicConfig->app_id,
                 'app_secret' => $model->publicConfig->app_secret,
-                'domain' => $model->domain,
+                'domain' => $entrance,
                 'landing' => $landing
             ]
         ]);
-    }
-
-    public function findModel($url)
-    {
-        $url = strip_tags(trim($url));
-        if (($model = AppConfig::find()->joinWith('publicConfig')->where(['domain' => $url, 'type' => AppConfig::TYPE_ENTRANCE])->one()) == null) {
-            return json_encode([
-                'code' => -1,
-                'msg' => 'error'
-            ]);
-        }
-
-        return $model;
     }
 }
