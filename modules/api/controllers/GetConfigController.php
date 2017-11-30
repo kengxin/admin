@@ -11,7 +11,7 @@ class GetConfigController extends Controller
         $model = $this->findModel($url);
         $landing = AppConfig::find()
             ->select(['domain'])
-            ->where(['pid' => $model->publicConfig->id, 'type' => AppConfig::TYPE_LANDING])
+            ->where(['pid' => $model->pid, 'type' => AppConfig::TYPE_LANDING])
             ->column();
 
         return json_encode([
