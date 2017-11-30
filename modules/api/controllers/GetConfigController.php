@@ -17,7 +17,7 @@ class GetConfigController extends Controller
 
         $links = AppConfig::find()
             ->select(['domain', 'type'])
-            ->where(['pid' => $model->pid])
+            ->where(['pid' => $model->pid, 'status' => AppConfig::STATUS_SUCCESS])
             ->all();
 
         $landing = [];
