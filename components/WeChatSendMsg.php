@@ -16,7 +16,7 @@ class WeChatSendMsg extends Component
             'toparty' => '',
             'totag' => '',
             'msgtype' => 'text',
-            'agentid' => '2',
+            'agentid' => '1000002',
             'safe' => '0',
             'text' => [
                 'content' => $msg,
