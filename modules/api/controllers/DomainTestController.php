@@ -33,7 +33,7 @@ class DomainTestController extends Controller
     {
         $model = $this->findModel($url);
         $model->status = AppConfig::STATUS_ERROR;
-        $model->colsed_at = time();
+        $model->closed_at = time();
         if (!$model->save()) {
             $error = $model->getErrors();
             Yii::error("not save app-config, error: {$error}");
