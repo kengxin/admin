@@ -66,8 +66,8 @@ $config = [
         ],
         'wechatMessage' => [
             'class' => 'app\components\WeChatSendMsg',
-            'app_id' => 'wxfc44ce9d5913b4f4',
-            'app_secret' => 'Va-WXXUXohQhGFJjsOC65cUFgMA2E84QjwicK6LUlmdj2bksqOSItItv13HGoBJM'
+            'app_id' => 'ww7abfe03bc95bd124',
+            'app_secret' => 'Rd2rf6sg_BMorZLa8le6r1lsggNqTr3EU8X2E2nyCBE'
         ]
     ],
     'modules' => [
