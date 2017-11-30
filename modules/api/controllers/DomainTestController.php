@@ -44,7 +44,7 @@ class DomainTestController extends Controller
         $time = date('Y-m-d H:i:s', time());
         $typeList = AppConfig::getTypeList();
         $activityConfig = new ActivityConfig();
-        $domainCount = $activityConfig->getSuccessDomainNum($publicConfig->activity_Id);
+        $domainCount = $activityConfig->getSuccessDomainNum($publicConfig->activity_id);
 
         $msg = [
             '域名被封禁',
