@@ -65,7 +65,7 @@ $config = [
             'currencyCode' => 'CNY',
         ],
         'wechatMessage' => [
-            'class' => 'app\components\weChatSendMsg',
+            'class' => 'app\components\WeChatSendMsg',
             'app_id' => 'wxfc44ce9d5913b4f4',
             'app_secret' => 'Va-WXXUXohQhGFJjsOC65cUFgMA2E84QjwicK6LUlmdj2bksqOSItItv13HGoBJM'
         ]
