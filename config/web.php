@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'name' => '微信',
     'timeZone' => 'Asia/Shanghai',
+    'defaultRoute' => 'admin/activity-config/index',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
