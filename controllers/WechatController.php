@@ -14,7 +14,8 @@ class WechatController extends Controller
 
     public function actionEvent()
     {
-        file_put_contents('ticket.txt', json_encode(Yii::$app->request->post()));
+        $input = file_get_contents("php://input");
+        file_put_contents('ticket.txt', $input);
     }
 
     public function getAccessToken($app_id, $verify_ticket)
