@@ -16,17 +16,16 @@ class WechatController extends Controller
 
     public function actionEvent()
     {
-        $dec_msg = "";
-        $postStr = file_get_contents("php://input");
-        if (!$postStr) $postStr = $GLOBALS['HTTP_RAW_POST_DATA'];
-        if (!$postStr) return false;
+        $data = file_get_contents('php://input');
+
         $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
-        $ret = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $postStr, $dec_msg);
-        if ($ret === 0) {
-            $arr = (array)simplexml_load_string($dec_msg, 'SimpleXMLElement', LIBXML_NOCDATA);
-            file_put_contents('ticket.txt', json_encode($arr));
+        // 第三方收到公众号平台发送的消息
+        $msg = '';
+        $errCode = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $data, $msg);
+        if ($errCode == 0) {
+            file_put_contents('ticket.txt', $msg);
         } else {
-            return false;
+            file_put_contents('ticket.txt', $errCode);
         }
     }
 
