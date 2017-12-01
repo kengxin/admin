@@ -12,7 +12,7 @@ class WechatController extends Controller
 
     const ACCESS_TOKEN = 'https://api.weixin.qq.com/cgi-bin/component/api_component_token';
     const AUTH_CODE = 'https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=%s';
-    const PUBLIC_CONFIG = 'https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=xxxx';
+    const PUBLIC_CONFIG = 'https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=%s';
 
     public function actionEvent()
     {
