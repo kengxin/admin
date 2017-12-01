@@ -127,4 +127,9 @@ class WechatController extends Controller
         $val = json_decode(json_encode($xmlstring), true);
         return $val;
     }
+
+    public function actionShow()
+    {
+        echo "<a href='https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=wx4234d16cda2841f9&pre_auth_code=preauthcode@@@9-4-gPAUeRdQ3ShmnAKkCJRLTxwpXuyYZ_9w_JhjH_Kt4dJy07wGflVDIyvVKVGl&redirect_uri=http://gx.amauf.cn'>click</a>";
+    }
 }
