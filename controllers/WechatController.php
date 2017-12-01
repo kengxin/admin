@@ -17,11 +17,8 @@ class WechatController extends Controller
     public function actionEvent()
     {
         $data = $this->getTicket();
-        if (is_array($data)) {
-            file_put_contents('ticket.txt', json_encode($data));
-        } else {
-            file_put_contents('ticket.txt', $data);
-        }
+
+        file_put_contents('ticket.txt', $data);
     }
 
     public function getAccessToken($app_id, $verify_ticket)
@@ -78,18 +75,17 @@ class WechatController extends Controller
 
     public function getTicket()
     {
-        $dec_msg = "";
-        $postStr = file_get_contents("php://input");
-        if (!$postStr) $postStr = $GLOBALS['HTTP_RAW_POST_DATA'];
-        if (!$postStr) return false;
-        $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
-        $ret = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $postStr, $dec_msg);
-        if ($ret === 0) {
-            $arr = (array)simplexml_load_string($dec_msg, 'SimpleXMLElement', LIBXML_NOCDATA);
-            return $arr;
-        } else {
-            return false;
-        }
+        $timestamp  = $_GET['timestamp'];
+        $nonce = $_GET["nonce"];
+        $msg_signature  = $_GET['msg_signature'];
+
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        $pc = new \WXBizMsgCrypt('wechat', EncodingAESKey, 'wx4234d16cda2841f9');
+        $this->logger(" D \r\n".$postStr);
+        $decryptMsg = "";  //解密后的明文
+        $errCode = $pc->DecryptMsg($msg_signature, $timestamp, $nonce, $postStr, $decryptMsg);
+
+        return $decryptMsg;
     }
 
     public function curlPost($url, $params)
