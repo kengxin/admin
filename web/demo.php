@@ -1,6 +1,6 @@
 <?php
 
-include_once "wxBizMsgCrypt.php";
+include_once "../components/decode/wxBizMsgCrypt.php";
 
 // 第三方发送消息给公众平台
 $encodingAesKey = "MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn";
@@ -18,12 +18,17 @@ $data = <<<XML
 </xml>
 XML;
 
+
 $pc = new WXBizMsgCrypt($token, $encodingAesKey, $appId);
 
 $msg = '';
 $errCode = $pc->decryptMsg($msg_signature, $timestamp, $nonce, $data, $msg);
+
+
+var_dump(xmlToArray($msg));die;
+var_dump($msg);die;
 if ($errCode == 0) {
-	print("解密后: " . $msg . "\n");
+    print("解密后: " . $msg . "\n");
 } else {
-	print($errCode . "\n");
+    print($errCode . "\n");
 }

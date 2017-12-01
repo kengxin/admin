@@ -1,10 +1,9 @@
 <?php
 namespace app\controllers;
+include '../components/decode/wxBizMsgCrypt.php';
 
 use Yii;
 use yii\web\Controller;
-
-include '../components/decode/wxBizMsgCrypt.php';
 
 class WechatController extends Controller
 {
@@ -80,15 +79,13 @@ class WechatController extends Controller
         $timestamp  = $_GET['timestamp'];
         $nonce = $_GET["nonce"];
         $msg_signature  = $_GET['msg_signature'];
+        $data = file_get_contents('php://input');
 
-        $postStr = file_get_contents('php://input');
-        file_put_contents('xml.txt', $postStr);
-        file_put_contents('get.txt', json_encode($_GET));
+        $msg = '';
         $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
-        $decryptMsg = "";  //解密后的明文
-        $errCode = $pc->decryptMsg($msg_signature, $timestamp, $nonce, $postStr, $decryptMsg);
+        $errCode = $pc->decryptMsg($msg_signature, $timestamp, $nonce, $data, $msg);
 
-        return $decryptMsg;
+        return $msg;
     }
 
     public function curlPost($url, $params)
@@ -105,5 +102,12 @@ class WechatController extends Controller
         curl_close($ch);
 
         return $output;
+    }
+
+    function xmlToArray($xml){
+        libxml_disable_entity_loader(true);
+        $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $val = json_decode(json_encode($xmlstring), true);
+        return $val;
     }
 }
