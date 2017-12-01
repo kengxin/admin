@@ -83,6 +83,7 @@ class WechatController extends Controller
 
         $postStr = file_get_contents('input://input');
         file_put_contents('xml.txt', $postStr);
+        file_put_contents('get.txt', json_encode($_GET));
         $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
         $decryptMsg = "";  //解密后的明文
         $errCode = $pc->decryptMsg($msg_signature, $timestamp, $nonce, $postStr, $decryptMsg);
