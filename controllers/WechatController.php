@@ -19,16 +19,15 @@ class WechatController extends Controller
         $xml = $this->getTicket();
 
         $ticketArray = $this->xmlToArray($xml);
-        Yii::info(json_encode($ticketArray));
         $appId = $ticketArray['AppId'];
         $ticket = $ticketArray['ComponentVerifyTicket'];
 
         $accessToken = $this->getAccessToken($appId, $ticket);
-        Yii::info(json_encode($accessToken));
+        file_put_contents('access.txt', $accessToken);
         $authCode = $this->getAuthCode($appId, $accessToken);
-        Yii::info(json_encode($authCode));
+        file_put_contents('authcode.txt', $authCode);
         $publicConfig = $this->getPublicConfig($appId, $authCode, $accessToken);
-        Yii::info(json_encode($publicConfig));
+        file_put_contents('publicconfig.txt', $publicConfig);
 
         file_put_contents('config.txt', json_encode($publicConfig));
 
