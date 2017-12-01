@@ -27,6 +27,7 @@ class WechatController extends Controller
         } else {
             file_put_contents('ticket.txt', $errCode);
         }
+
     }
 
     public function getAccessToken($app_id, $verify_ticket)
