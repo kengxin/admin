@@ -19,6 +19,8 @@ class WechatController extends Controller
         $data = $this->getTicket();
 
         file_put_contents('ticket.txt', $data);
+
+        echo 'success';
     }
 
     public function getAccessToken($app_id, $verify_ticket)
