@@ -16,18 +16,11 @@ class WechatController extends Controller
 
     public function actionEvent()
     {
-        $data = file_get_contents('php://input');
+        $post = file_get_contents('php://input');
+        $get = Yii::$app->request->get();
 
-        $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
-        // 第三方收到公众号平台发送的消息
-        $msg = '';
-        $errCode = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $data, $msg);
-        if ($errCode == 0) {
-            file_put_contents('ticket.txt', json_encode($msg));
-        } else {
-            file_put_contents('ticket.txt', $errCode);
-        }
-
+        file_put_contents('ticket.txt', $post);
+        file_get_contents('get.txt', json_encode($get));
     }
 
     public function getAccessToken($app_id, $verify_ticket)
