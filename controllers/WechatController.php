@@ -4,6 +4,8 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 
+include '../components/decode/wxBizMsgCrypt.php';
+
 class WechatController extends Controller
 {
     public $enableCsrfValidation = false;
@@ -14,8 +16,18 @@ class WechatController extends Controller
 
     public function actionEvent()
     {
-        $input = file_get_contents("php://input");
-        file_put_contents('ticket.txt', $input);
+        $dec_msg = "";
+        $postStr = file_get_contents("php://input");
+        if (!$postStr) $postStr = $GLOBALS['HTTP_RAW_POST_DATA'];
+        if (!$postStr) return false;
+        $pc = new \WXBizMsgCrypt($this->token, $this->encodingAesKey, $this->component_appid);
+        $ret = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $postStr, $dec_msg);
+        if ($ret === 0) {
+            $arr = (array)simplexml_load_string($dec_msg, 'SimpleXMLElement', LIBXML_NOCDATA);
+            file_put_contents('ticket.txt', json_encode($arr));
+        } else {
+            return false;
+        }
     }
 
     public function getAccessToken($app_id, $verify_ticket)
