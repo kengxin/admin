@@ -26,7 +26,7 @@ class WechatController extends Controller
         file_put_contents('access.txt', $accessToken);
         $authCode = $this->getAuthCode($appId, $accessToken);
         file_put_contents('authcode.txt', $authCode);
-        $publicConfig = $this->getPublicConfig($appId, $authCode, $accessToken);
+        $publicConfig = $this->getPublicConfig($appId, 'queryauthcode@@@7iRg4vWo5zVt8DcdtsW90mtdGsk5-lxivlkz4Q_2HGhMwZOwBheY9rzVbVk3DAdArW_ztc0tHJohd4Cj-jyiYA', $accessToken);
         file_put_contents('publicconfig.txt', $publicConfig);
 
         file_put_contents('config.txt', json_encode($publicConfig));
