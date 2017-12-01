@@ -80,10 +80,9 @@ class WechatController extends Controller
         $msg_signature  = $_GET['msg_signature'];
 
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        $pc = new \WXBizMsgCrypt('wechat', EncodingAESKey, 'wx4234d16cda2841f9');
-        $this->logger(" D \r\n".$postStr);
+        $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
         $decryptMsg = "";  //解密后的明文
-        $errCode = $pc->DecryptMsg($msg_signature, $timestamp, $nonce, $postStr, $decryptMsg);
+        $errCode = $pc->decryptMsg($msg_signature, $timestamp, $nonce, $postStr, $decryptMsg);
 
         return $decryptMsg;
     }
