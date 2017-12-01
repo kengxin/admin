@@ -44,7 +44,7 @@ class WechatController extends Controller
             'component_verify_ticket' => $verify_ticket
         ];
 
-        $result = $this->getAccessToken(self::ACCESS_TOKEN, $params);
+        $result = $this->curlPost(self::ACCESS_TOKEN, $params);
 
         $result = json_decode($result, true);
         if (empty($result) && isset($result['component_access_token'])) {
