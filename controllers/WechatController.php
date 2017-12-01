@@ -34,11 +34,11 @@ class WechatController extends Controller
 
     public function getAccessToken($app_id, $verify_ticket)
     {
-        $model = $this->findModel($app_id);
+//        $model = $this->findModel($app_id);
 
         $params = [
             'component_appid' => $app_id,
-            'component_appsecret' => $model->app_secret,
+            'component_appsecret' => 'dddd711a5d266b917c11255803fd5256',
             'component_verify_ticket' => $verify_ticket
         ];
 
