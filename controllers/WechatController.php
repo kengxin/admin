@@ -88,7 +88,6 @@ class WechatController extends Controller
 
     public function getTicket()
     {
-        var_dump($_GET);die;
         $timestamp  = $_GET['timestamp'];
         $nonce = $_GET["nonce"];
         $msg_signature  = $_GET['msg_signature'];
