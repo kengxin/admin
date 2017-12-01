@@ -81,7 +81,7 @@ class WechatController extends Controller
         $nonce = $_GET["nonce"];
         $msg_signature  = $_GET['msg_signature'];
 
-        $postStr = file_get_contents('input://input');
+        $postStr = file_get_contents('php://input');
         file_put_contents('xml.txt', $postStr);
         file_put_contents('get.txt', json_encode($_GET));
         $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
