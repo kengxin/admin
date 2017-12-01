@@ -3,7 +3,6 @@ namespace app\controllers;
 include '../components/decode/wxBizMsgCrypt.php';
 
 use Yii;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -20,12 +19,16 @@ class WechatController extends Controller
         $xml = $this->getTicket();
 
         $ticketArray = $this->xmlToArray($xml);
+        Yii::info(json_encode($ticketArray));
         $appId = $ticketArray['AppId'];
         $ticket = $ticketArray['ComponentVerifyTicket'];
 
         $accessToken = $this->getAccessToken($appId, $ticket);
+        Yii::info(json_encode($accessToken));
         $authCode = $this->getAuthCode($appId, $accessToken);
+        Yii::info(json_encode($authCode));
         $publicConfig = $this->getPublicConfig($appId, $authCode, $accessToken);
+        Yii::info(json_encode($publicConfig));
 
         file_put_contents('config.txt', json_encode($publicConfig));
 
