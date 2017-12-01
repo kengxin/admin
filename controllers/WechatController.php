@@ -16,11 +16,12 @@ class WechatController extends Controller
 
     public function actionEvent()
     {
-        $post = file_get_contents('php://input');
-        $get = Yii::$app->request->get();
-
-        file_put_contents('ticket.txt', $post);
-        file_get_contents('get.txt', json_encode($get));
+        $data = $this->getTicket();
+        if (is_array($data)) {
+            file_put_contents('ticket.txt', json_encode($data));
+        } else {
+            file_put_contents('ticket.txt', $data);
+        }
     }
 
     public function getAccessToken($app_id, $verify_ticket)
@@ -73,6 +74,22 @@ class WechatController extends Controller
     public function findModel($app_id)
     {
         return [];
+    }
+
+    public function getTicket()
+    {
+        $dec_msg = "";
+        $postStr = file_get_contents("php://input");
+        if (!$postStr) $postStr = $GLOBALS['HTTP_RAW_POST_DATA'];
+        if (!$postStr) return false;
+        $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
+        $ret = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $postStr, $dec_msg);
+        if ($ret === 0) {
+            $arr = (array)simplexml_load_string($dec_msg, 'SimpleXMLElement', LIBXML_NOCDATA);
+            return $arr;
+        } else {
+            return false;
+        }
     }
 
     public function curlPost($url, $params)
