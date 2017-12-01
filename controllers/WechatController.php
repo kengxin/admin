@@ -3,7 +3,9 @@ namespace app\controllers;
 include '../components/decode/wxBizMsgCrypt.php';
 
 use Yii;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class WechatController extends Controller
 {
@@ -15,9 +17,17 @@ class WechatController extends Controller
 
     public function actionEvent()
     {
-        $data = $this->getTicket();
+        $xml = $this->getTicket();
 
-        file_put_contents('ticket.txt', $data);
+        $ticketArray = $this->xmlToArray($xml);
+        $appId = $ticketArray['AppId'];
+        $ticket = $ticketArray['ComponentVerifyTicket'];
+
+        $accessToken = $this->getAccessToken($appId, $ticket);
+        $authCode = $this->getAuthCode($appId, $accessToken);
+        $publicConfig = $this->getPublicConfig($appId, $authCode, $accessToken);
+
+        file_put_contents('config.txt', json_encode($publicConfig));
 
         echo 'success';
     }
@@ -36,7 +46,7 @@ class WechatController extends Controller
 
         $result = json_decode($result, true);
         if (empty($result) && isset($result['component_access_token'])) {
-            return false;
+            throw new NotFoundHttpException();
         }
 
         return $result['component_access_token'];
@@ -50,7 +60,7 @@ class WechatController extends Controller
 
         $result = json_decode($result, true);
         if (empty($result) && isset($result['pre_auth_code'])) {
-            return false;
+            throw new NotFoundHttpException();
         }
 
         return $result['pre_auth_code'];
@@ -63,7 +73,7 @@ class WechatController extends Controller
         $result = $this->curlPost($url, ['component_appid' => $app_id, 'authorization_code' => $auth_code]);
 
         if (empty($result)) {
-            return false;
+            throw new NotFoundHttpException();
         }
 
         return $result;
@@ -85,7 +95,11 @@ class WechatController extends Controller
         $pc = new \WXBizMsgCrypt('wechat', 'MlkRSUrVgUj54vw1eG4w3gX0P5lG84EzqBsp0o5pWNn', 'wx4234d16cda2841f9');
         $errCode = $pc->decryptMsg($msg_signature, $timestamp, $nonce, $data, $msg);
 
-        return $msg;
+        if ($errCode == 0) {
+            return $msg;
+        }
+
+        throw new NotFoundHttpException();
     }
 
     public function curlPost($url, $params)
