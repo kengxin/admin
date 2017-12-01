@@ -23,7 +23,7 @@ class WechatController extends Controller
         $msg = '';
         $errCode = $pc->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $data, $msg);
         if ($errCode == 0) {
-            file_put_contents('ticket.txt', $msg);
+            file_put_contents('ticket.txt', json_encode($msg));
         } else {
             file_put_contents('ticket.txt', $errCode);
         }
