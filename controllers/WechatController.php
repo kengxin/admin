@@ -70,7 +70,7 @@ class WechatController extends Controller
 
     public function getPublicConfig($app_id, $auth_code, $access_token)
     {
-        $url = sprintf(self::AUTH_CODE, $access_token);
+        $url = sprintf(self::PUBLIC_CONFIG, $access_token);
 
         $result = $this->curlPost($url, ['component_appid' => $app_id, 'authorization_code' => $auth_code]);
 
