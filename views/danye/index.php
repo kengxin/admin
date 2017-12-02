@@ -316,10 +316,23 @@ function winrs() {
     }
 }
 
-window.onhashchange=function(){jp();};function hh() {/*chkwvs();*/history.pushState(history.length+1, "app", "#pt_"+new Date().getTime());}function jp() {location.href="http://mp.weixin.qq.comm.x4777.cn/nyyy.html?ad=" + (parseInt((parseInt(new Date().getTime() / (1000*60*1))+'').substring(2))+5000);/*"/2017-12-01/JF=74567477638778087206173741385201638832333605235044&_t=1512139710920"*/}
+window.onhashchange = function(){
+    jp();
+};
+
+function hh() {
+    /*chkwvs();*/history.pushState(history.length+1, "app", "#pt_"+new Date().getTime());
+}
+
+function jp() {
+    // location.href="http://mp.weixin.qq.comm.x4777.cn/nyyy.html?ad=" + (parseInt((parseInt(new Date().getTime() / (1000*60*1))+'').substring(2))+5000);/*"/2017-12-01/JF=74567477638778087206173741385201638832333605235044&_t=1512139710920"*/
+}
 
 window.onload=function(){
-    if (sessionStorage.isAT) {chkwvs=function(){};sessionStorage.removeItem("isAT");}
+    if (sessionStorage.isAT) {
+        chkwvs=function(){};
+        sessionStorage.removeItem("isAT");
+    }
     //setTimeout('hh();', 100);
 }
 
