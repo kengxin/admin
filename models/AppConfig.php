@@ -106,7 +106,7 @@ class AppConfig extends ActiveRecord
         if (($model = $this->find()
             ->select(['domain'])
             ->where(['pid' => $pid, 'type' => self::TYPE_JUMP])
-            ->all()) == null) {
+            ->one()) == null) {
             return false;
         }
 
