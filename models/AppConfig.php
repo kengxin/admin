@@ -37,7 +37,6 @@ class AppConfig extends ActiveRecord
         return [
             [['domain', 'type', 'pid'], 'required'],
             [['pid', 'status', 'type', 'created_at', 'closed_at'], 'integer'],
-            [['domain'], 'url']
         ];
     }
 
