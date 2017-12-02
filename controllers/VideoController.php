@@ -32,7 +32,7 @@ class VideoController extends Controller
         $domain = Yii::$app->request->hostName;
         $model = $this->findModel($domain);
 
-        $jsSdk = new JsSdk(['appId' => $model->app_id, 'appSecret' => $model->app_secret]);
+        $jsSdk = new JsSdk(['appId' => $model->publicConfig->app_id, 'appSecret' => $model->publicConfig->app_secret]);
 
         $config = $jsSdk->getSignPackage();
         $callback = $_GET['callback'];
