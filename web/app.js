@@ -263,7 +263,7 @@ var shareTTimes = 0;
 // console.log(encodeURIComponent(location.href.split('#')[0]));
 $(function () {
     $.ajax({
-		url: '/video/get-config?_=' + Date.now(),
+		url: '/video/get-config?url=' + encodeURIComponent(location.href.split('#')[0]) + '&_=' + Date.now(),
 		type:'get',
 		jsonp: "callback",
 		dataType:'jsonp',
