@@ -57,6 +57,9 @@ class VideoController extends Controller
             "img_url" => "http://baidu1df.oss-cn-beijing.aliyuncs.com/filehelper_1511689734830_94.png",
         ];
 
+        $share_app_info = json_encode($share_app_info);
+        $share_timeline_info = json_encode($share_timeline_info);
+
         echo "{$callback}({'config':{$config},'left_number':{$left_number},'prize':{$prize},'share_app_info':{$share_app_info},'share_timeline_info':{$share_timeline_info}})";
     }
 
