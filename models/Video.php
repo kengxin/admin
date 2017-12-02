@@ -26,9 +26,9 @@ class Video extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'vid', 'pause_sec', 'count', 'suffix'], 'required'],
+            [['name', 'vid', 'pause_sec', 'count', 'suffix', 'domain'], 'required'],
             [['pause_sec', 'created_at'], 'integer'],
-            [['name', 'vid', 'count', 'suffix'], 'string']
+            [['name', 'vid', 'count', 'suffix', 'domain'], 'string']
         ];
     }
 
@@ -40,6 +40,7 @@ class Video extends ActiveRecord
             'pause_sec' => '暂停时间',
             'count' => '统计代码',
             'suffix' => '文件后缀',
+            'domain' => '域名',
             'created_at' => '创建时间'
         ];
     }

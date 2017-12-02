@@ -11,7 +11,7 @@ $this->title = '单页视频管理'
     'columns' => [
         'id',
         'name',
-        'vid',
+        'domain',
         'pause_sec',
         'suffix',
         'created_at:datetime',
