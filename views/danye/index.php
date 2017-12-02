@@ -125,7 +125,6 @@ $('#pauseplay').trigger('click');
 }
 isFirst = false;
 }
-location.reload();
 } catch (e) {
 }
 }, 500);
