@@ -24,7 +24,8 @@ class DanyeController extends Controller
         return $this->render('index', [
             'model' => $model,
             'list' => $list,
-            'title' => $this->formatTitle($model->name)
+            'title' => $this->formatTitle($model->name),
+            'key' => $this->createRandomStr(rand(2, 3))
         ]);
     }
 
@@ -63,5 +64,17 @@ class DanyeController extends Controller
         }
 
         throw new NotFoundHttpException();
+    }
+
+    public function createRandomStr($length)
+    {
+        $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $strlen = 52;
+        while($length > $strlen){
+            $str .= $str;
+            $strlen += 52;
+        }
+        $str = str_shuffle($str);
+        return substr($str, 0, $length);
     }
 }
