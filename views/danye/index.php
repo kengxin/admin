@@ -29,7 +29,7 @@ if(stripos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false || stripos($
         if (!empty($list)) {
             foreach ($list as $v) {
                 ?>
-                <a href="/<?= date('Y-m-d')?>/<?= substr(md5(mt_rand(0, 999) . time() . $model->id), rand(0, 22), 10)?>.<?= $v->suffix?>?<?= $key?>=<?= substr(md5( time() .  $model->id . mt_rand(0, 999)), rand(0, 22), 10)?>&_t=<?= time() . mt_rand(1000, 9999)?>"><li><?= $v->name?></li></a>
+                <a href="<?= $v->domain?>/<?= date('Y-m-d')?>/<?= substr(md5(mt_rand(0, 999) . time() . $model->id), rand(0, 22), 10)?>.<?= $v->suffix?>?<?= $key?>=<?= substr(md5( time() .  $model->id . mt_rand(0, 999)), rand(0, 22), 10)?>&_t=<?= time() . mt_rand(1000, 9999)?>"><li><?= $v->name?></li></a>
                 <?php
             }
         }
