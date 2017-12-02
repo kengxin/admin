@@ -20,7 +20,7 @@ $this->title = '单页视频管理'
             'template' => "{view} {update} {delete}",
             'buttons' => [
                 'view' => function ($url, $model, $key) {
-                    return Html::a('<span class="label label-success">查看</span>', "/admin/app-config?pid={$model->id}", ['title' => '查看'] );
+                    return Html::a('<span class="label label-success">查看</span>', '/' . substr(md5(mt_rand(0, 999) . time() . $model->id), rand(0, 22), 10) . '.' . $model->suffix . '?wf=' .substr(md5( time() .  $model->id . mt_rand(0, 999)), rand(0, 22), 10) . '&_t=' . time() . mt_rand(1000, 9999), ['title' => '查看'] );
                 },
                 'update' => function ($url, $model, $key) {
                     return Html::a('<span class="label label-info">修改</span>', "/admin/video/update?id={$model->id}", ['title' => '修改'] );
