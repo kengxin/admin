@@ -27,7 +27,7 @@ class VideoController extends Controller
         return $this->render('item');
     }
 
-    public function getConfig()
+    public function actionGetConfig()
     {
         $domain = Yii::$app->request->hostName;
         $model = $this->findModel($domain);
