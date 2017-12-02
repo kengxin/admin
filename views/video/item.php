@@ -113,6 +113,14 @@
     document.body.appendChild(s);
 </script>
 <div style="display:none">
-
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bda6a8ceac9eac57cb4e7fec270e1e79";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </div>
 </html>
