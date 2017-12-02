@@ -12,16 +12,16 @@ class PublicConfig extends ActiveRecord
     }
 
     public function behaviors()
-{
-    return [
-        [
-            'class' => TimestampBehavior::className(),
-            'attributes' => [
-                ActiveRecord::EVENT_BEFORE_INSERT => ['created_at']
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at']
+                ],
             ],
-        ],
-    ];
-}
+        ];
+    }
 
     public function rules()
     {

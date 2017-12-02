@@ -17,10 +17,15 @@ class Left extends Object
                     'label' => '项目管理',
                     'icon' => 'fa fa-share',
                     'items' => [
-                        ['label' => '活动管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/activity-config/index'],],
-                        ['label' => '公众号管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/public-config/index'],],
-                        ['label' => '域名管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/app-config/index'],],
+                        ['label' => '活动管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/activity-config/index']],
+                        ['label' => '公众号管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/public-config/index']],
+                        ['label' => '域名管理', 'icon' => 'fa fa-file-code-o', 'url' => ['/admin/app-config/index']]
                     ],
+                ],
+                [
+                    'label' => '单页视频管理',
+                    'icon' => 'fa fa-share',
+                    'url' => '/admin/video',
                 ]
             ];
     }

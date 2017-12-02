@@ -56,7 +56,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-
+                '<pre:.*>.<suffix:.*>' => 'danye/index'
             ]
         ],
         'formatter' => [
