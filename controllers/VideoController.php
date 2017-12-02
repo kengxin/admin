@@ -34,7 +34,7 @@ class VideoController extends Controller
 
         $jsSdk = new JsSdk(['appId' => $model->publicConfig->app_id, 'appSecret' => $model->publicConfig->app_secret]);
 
-        $config = $jsSdk->getSignPackage();
+        $config = json_encode($jsSdk->getSignPackage());
         $callback = $_GET['callback'];
 
         $left_number_rand = mt_rand(600, 2000);
