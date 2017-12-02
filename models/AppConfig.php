@@ -90,7 +90,7 @@ class AppConfig extends ActiveRecord
     public function getConfigByDomain($domain)
     {
         $model = $this->find()
-            ->leftJoin('publicConfig')
+            ->joinWith('publicConfig')
             ->where(['domain' => $domain])
             ->one();
 
