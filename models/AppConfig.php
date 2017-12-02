@@ -87,4 +87,18 @@ class AppConfig extends ActiveRecord
 
         return $list;
     }
+
+    public function getConfigByDomain($domain)
+    {
+        $model = $this->find()
+            ->leftJoin('publicConfig')
+            ->where(['domain' => $domain])
+            ->one();
+
+        if (!empty($model) && isset($model->publicConfig)) {
+            return $model;
+        }
+
+        return false;
+    }
 }
