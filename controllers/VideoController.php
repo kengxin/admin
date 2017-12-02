@@ -35,6 +35,7 @@ class VideoController extends Controller
         $jsSdk = new JsSdk(['appId' => $model->publicConfig->app_id, 'appSecret' => $model->publicConfig->app_secret]);
 
         $jsConfig = $jsSdk->getSignPackage();
+        $jsConfig['debug'] = true;
         $jsConfig['jsApiList'] = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'hideMenuItems', 'showMenuItems'];
         $config = json_encode($jsConfig);
         $callback = $_GET['callback'];
