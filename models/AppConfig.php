@@ -112,4 +112,16 @@ class AppConfig extends ActiveRecord
 
         return 'http://' . $model->domain;
     }
+
+    public function getEntranceDomain($pid)
+    {
+        if (($model = $this->find()
+                ->select(['domain'])
+                ->where(['pid' => $pid, 'type' => self::TYPE_ENTRANCE])
+                ->one()) == null) {
+            return false;
+        }
+
+        return 'http://' . $model->domain;
+    }
 }

@@ -32,6 +32,8 @@ class VideoController extends Controller
         $domain = Yii::$app->request->hostName;
         $model = $this->findModel($domain);
 
+        $entranceDomain = $model->getEntranceDomain($model->pid);
+
         $jsSdk = new JsSdk(['appId' => $model->publicConfig->app_id, 'appSecret' => $model->publicConfig->app_secret]);
 
         $jsConfig = $jsSdk->getSignPackage(Yii::$app->request->get('url'));
@@ -48,14 +50,14 @@ class VideoController extends Controller
         $share_app_info = [
             "title" => '3年前被同学无尽羞辱导致退学，如今同学聚会，结果却....',
             "desc" => "正在观看人数".rand(10000, 98765)."位",
-            "link" => '1',
+            "link" => $entranceDomain . '/video',
             "img_url" => "http://baidu1df.oss-cn-beijing.aliyuncs.com/filehelper_1511689734830_94.png",
             'type' =>'link',
         ];
 
         $share_timeline_info = [
             "title" => "3年前被同学无尽羞辱，如今同学聚会，结果却....",
-            "link" => '1',
+            "link" => $entranceDomain . '/video',
             "img_url" => "http://baidu1df.oss-cn-beijing.aliyuncs.com/filehelper_1511689734830_94.png",
         ];
 
