@@ -10,7 +10,7 @@ class VideoController extends Controller
 {
     public $redirect_uri = '/video/item';
 
-    public $enableCsrfValidation = false;
+    public $layout = false;
 
     public function actionIndex()
     {
