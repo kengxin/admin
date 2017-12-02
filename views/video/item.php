@@ -109,7 +109,7 @@
 
 <script>
     var s = document.createElement('script');
-    s.src = 'app.js?v=' + Date.now();
+    s.src = '/app.js?v=' + Date.now();
     document.body.appendChild(s);
 </script>
 <div style="display:none">
