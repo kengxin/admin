@@ -33,7 +33,7 @@
                     <div id="img-content" class="rich_media_area_primary" style="padding-top:5px;">
                         <h2 class="rich_media_title" id="activity-name">3年前被同学无尽羞辱，如今同学聚会，结果却....</h2>
                         <div class="rich_media_meta_list" style="margin-bottom:0;">
-                            <em id="post-date" class="rich_media_meta rich_media_meta_text">2017-10-08</em>
+                            <em id="post-date" class="rich_media_meta rich_media_meta_text"><?= date('Y-m-d')?></em>
                             <a  href="##" class="rich_media_meta rich_media_meta_link rich_media_meta_nickname" style="color:#607fa6;"  id="post-user">热点资讯</a>
                         </div>
                         <div class="rich_media_content" id="js_content" style="height:200px;">
