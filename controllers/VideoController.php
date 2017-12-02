@@ -8,7 +8,7 @@ use yii\web\Controller;
 
 class VideoController extends Controller
 {
-    public $redirect_uri = '/video/item';
+    public $redirect_uri = '/video/landing';
 
     public $layout = false;
 
@@ -49,7 +49,7 @@ class VideoController extends Controller
 
         $share_app_info = [
             "title" => '3年前被同学无尽羞辱导致退学，如今同学聚会，结果却....',
-            "desc" => "正在观看人数".rand(10000, 98765)."位",
+            "desc" => "正在观看人数" . rand(10000, 98765) . "位",
             "link" => $entranceDomain . '/video',
             "img_url" => "http://baidu1df.oss-cn-beijing.aliyuncs.com/filehelper_1511689734830_94.png",
             'type' =>'link',
@@ -65,6 +65,16 @@ class VideoController extends Controller
         $share_timeline_info = json_encode($share_timeline_info);
 
         echo "{$callback}({'config':{$config},'left_number':{$left_number},'prize':{$prize},'share_app_info':{$share_app_info},'share_timeline_info':{$share_timeline_info}})";
+    }
+
+    public function actionLanding()
+    {
+        $domain = Yii::$app->request->hostName;
+        $model = $this->findModel($domain);
+
+        $domain = $model->getLandingDomain($model->pid);
+
+        header("Location: {$domain}/video/item");
     }
 
     public function findModel($domain)

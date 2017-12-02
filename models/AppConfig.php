@@ -124,4 +124,17 @@ class AppConfig extends ActiveRecord
 
         return 'http://' . $model->domain;
     }
+
+    public function getLandingDomain($pid)
+    {
+        if (($model = $this->find()
+                ->select(['domain'])
+                ->where(['pid' => $pid, 'type' => self::TYPE_LANDING])
+                ->orderBy('rand()')
+                ->one()) == null) {
+            return false;
+        }
+
+        return 'http://' . $model->domain;
+    }
 }
