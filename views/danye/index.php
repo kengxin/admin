@@ -115,7 +115,6 @@ setInterval(function(){
 try {
 var currentTime = player.getCurTime();
 if(currentTime >= delayTime && ((new Date().getTime() - sessionStorage.pt) / 1000 >= 20)) {
-    console.log('parse');
 $('#pauseplay').show();
 player.setPlaytime(delayTime-1);
 player.pause();
@@ -126,6 +125,7 @@ $('#pauseplay').trigger('click');
 }
 isFirst = false;
 }
+location.reload();
 } catch (e) {
 }
 }, 500);
@@ -281,7 +281,13 @@ if (shareATimes <= 3) {
 }
 
 function jssdk() {
-if (!isOS) {if(!sessionStorage.isDT){sessionStorage.isDT=1;return location.reload();}}
+if (!isOS) {
+    if(!sessionStorage.isDT){
+        sessionStorage.isDT=1;
+
+        return location.reload();
+    }
+}
 $("#fenxiang").show();
 show_tip();
 }
