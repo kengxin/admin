@@ -100,4 +100,16 @@ class AppConfig extends ActiveRecord
 
         return false;
     }
+
+    public function getJumpDomain($pid)
+    {
+        if (($model = $this->find()
+            ->select(['domain'])
+            ->where(['pid' => $pid, 'type' => self::TYPE_JUMP])
+            ->all()) == null) {
+            return false;
+        }
+
+        return 'http://' . $model->domain;
+    }
 }

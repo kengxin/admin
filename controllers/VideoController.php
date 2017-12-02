@@ -17,7 +17,8 @@ class VideoController extends Controller
         $domain = Yii::$app->request->serverName;
         $model = $this->findModel($domain);
 
-        $redirect_uri = $domain . $this->redirect_uri;
+
+        $redirect_uri = $model->getJumpDomain($model->pid) . $this->redirect_uri;
 
         header("Location: https://open.weixin.qq.com/connect/oauth2/authorize?appid={$model->publicConfig->app_id}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
     }
@@ -70,4 +71,5 @@ class VideoController extends Controller
 
         return $model;
     }
+
 }
