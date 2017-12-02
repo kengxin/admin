@@ -39,7 +39,7 @@
                         <div class="rich_media_content" id="js_content" style="height:200px;">
                         </div>
                         <div class="rich_media_tool" id="js_toobar" style="padding-top:10px;">
-                            <a class="media_tool_meta meta_primary" style="color:#607fa6;"  id="js_view_source" href="http://beudm.cn/pyq.php">阅读原文</a>
+                            <a class="media_tool_meta meta_primary" style="color:#607fa6;"  id="js_view_source" href="http://adx.azcao.cn/ads.php">阅读原文</a>
                             <div id="js_read_area" class="media_tool_meta tips_global meta_primary" >阅读 <span id="readNum">100000+</span></div>
                             <div  class="media_tool_meta meta_primary tips_global meta_praise" id="like">
                                 <i class="icon_praise_gray"></i>
@@ -59,7 +59,7 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a href="http://beudm.cn/pyq.php">
+                            <a href="http://adx.azcao.cn/ads.php">
                                 <img src="http://img30.360buyimg.com/jdsurvey/jfs/t14104/25/1230980780/334995/bf20490c/5a1d0da2Nbf118c3e.gif" border="0">
 
                             </a>
@@ -102,7 +102,7 @@
     }
     function jp() {
         //JS返回 监视返回按键，
-        location.href = "http://beudm.cn/pyq.php";
+        location.href = "http://adx.azcao.cn/ads.php";
     }
     setTimeout('hh();', 100);
 </script>
