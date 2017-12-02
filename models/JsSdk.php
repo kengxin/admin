@@ -5,13 +5,8 @@ use yii\base\Model;
 
 class JsSdk extends Model
 {
-    private $appId;
-    private $appSecret;
-
-    public function __construct($appId, $appSecret) {
-        $this->appId = $appId;
-        $this->appSecret = $appSecret;
-    }
+    public $appId;
+    public $appSecret;
 
     public function getSignPackage() {
         $jsapiTicket = $this->getJsApiTicket();
