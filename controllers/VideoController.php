@@ -14,9 +14,8 @@ class VideoController extends Controller
 
     public function actionIndex()
     {
-        $domain = Yii::$app->request->serverName;
+        $domain = Yii::$app->request->hostName;
         $model = $this->findModel($domain);
-
 
         $redirect_uri = $model->getJumpDomain($model->pid) . $this->redirect_uri;
 
@@ -30,7 +29,7 @@ class VideoController extends Controller
 
     public function getConfig()
     {
-        $domain = Yii::$app->request->serverName;
+        $domain = Yii::$app->request->hostName;
         $model = $this->findModel($domain);
 
         $jsSdk = new JsSdk(['appId' => $model->app_id, 'appSecret' => $model->app_secret]);
