@@ -19,7 +19,7 @@ function getCookie(name)
 //setCookie('delaytime','100');
 if (getCookie('delaytime')==null)
 {
-    setCookie('delaytime','3');
+    setCookie('delaytime','304');
 }
 
 if (getCookie('tip')=='ok')
