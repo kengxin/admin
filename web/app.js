@@ -25,6 +25,8 @@ if (getCookie('delaytime')==null)
 if (getCookie('tip')=='ok')
 {
     setTimeout('jssdk()',500);
+} else {
+    $('#gdt_area').show();
 }
 
 

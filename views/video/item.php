@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="rich_media_extra" id="gdt_area">
+        <div class="rich_media_extra" id="gdt_area" style="display: none">
             <div class="rich_tips with_line title_tips">
                 <span class="tips">广告</span>
             </div>
