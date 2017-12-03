@@ -8,7 +8,7 @@ use yii\web\Controller;
 
 class VideoController extends Controller
 {
-    public $redirect_uri = '/video/landing';
+    public $redirect_uri = '/video/item';
 
     public $layout = false;
 
@@ -17,7 +17,7 @@ class VideoController extends Controller
         $domain = Yii::$app->request->hostName;
         $model = $this->findModel($domain);
 
-        $redirect_uri = $model->getJumpDomain($model->pid) . $this->redirect_uri;
+        $redirect_uri = $model->getLandingDomain($model->pid) . $this->redirect_uri;
 
         header("Location: https://open.weixin.qq.com/connect/oauth2/authorize?appid={$model->publicConfig->app_id}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
     }
