@@ -249,23 +249,11 @@ function share_tip(shareATimes,shareTTimes) {
     } else if (shareATimes == 4) {
         wxalert('<b style="font-size: 22px">分享成功！</b><br/>请继续分享到<b style="font-size: 18px;color: red">1</b>个不同的群即可<b style="font-size: 18px;color: red;">免流量加速观看</b>！', '好')
     } else {
-        wxalert('<b style="font-size: 22px">分享成功！</b><br/>点击播放按钮继续观看', '播放', function() {
-            $("#mask").hide();
-            $("#fenxiang").hide();
-            $.cookie('delaytime', '10000', {
-                expires: 60,
-                path: '/'
-            });
-            $.cookie('tip', 'goon', {
-                expires: 60,
-                path: '/'
-            });
-
-            player.setPlaytime(pageGlobal.delayTime);
-            pageGlobal.delayTime = 10000;
-            window.name = "";
-            player.play();
-        })
+        wxalert('分享成功,点击确定继续播放!', '确定', function() {
+            setCookie('delaytime','12000');
+            setCookie('tip','goon');
+            location.reload();
+        });
     }
 
 }
